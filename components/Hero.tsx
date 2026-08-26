@@ -136,7 +136,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.8 }}
-        className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 lg:mt-12 z-10"
+        className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 md:mt-12 lg:mt-12 z-10"
       >
         <div className="glass rounded-2xl p-6 sm:p-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -190,14 +190,14 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+        className="relative z-10 mt-10 md:mt-6 mb-4 flex flex-col items-center"
       >
-        <span className="text-[rgb(var(--color-text-muted))] text-xs uppercase tracking-widest mb-2 font-medium">Scroll to explore</span>
+        <span className="text-white/60 text-sm md:text-xs uppercase tracking-widest mb-3 font-medium">Scroll to explore</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >
-          <ChevronDown className="text-[#DC2626]" size={24} />
+          <ChevronDown className="text-[#DC2626]" size={32} />
         </motion.div>
       </motion.div>
     </section>
