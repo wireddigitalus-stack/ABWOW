@@ -56,6 +56,7 @@ export default function About() {
               <img 
                 src="/images/IMG_8466.jpg" 
                 alt="ABWOW Paving crew operating equipment on a Tennessee job site" 
+                loading="lazy"
                 className="w-full h-full object-cover aspect-[4/5] md:aspect-[3/4]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -71,6 +72,7 @@ export default function About() {
               <img 
                 src="/images/IMG_8513.jpg" 
                 alt="ABWOW Paving operator on CAT roller" 
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -83,6 +85,7 @@ export default function About() {
                 muted 
                 loop 
                 playsInline 
+                preload="none"
                 className="w-full h-full object-cover"
               />
             </div>

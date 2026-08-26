@@ -123,9 +123,9 @@ export default function Gallery() {
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "100px" }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className={`relative group cursor-pointer overflow-hidden rounded-xl ${
+                className={`relative group cursor-pointer overflow-hidden rounded-xl bg-[rgb(var(--color-card))] animate-pulse ${
                   index === 0 || index === 3
                     ? "col-span-2 row-span-2 aspect-square md:aspect-[4/3]"
                     : "aspect-square"
@@ -136,6 +136,8 @@ export default function Gallery() {
                   <img
                     src={item.src}
                     alt={item.alt}
+                    loading="lazy"
+                    onLoad={(e) => e.currentTarget.parentElement?.classList.remove('animate-pulse')}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 ) : (
@@ -145,7 +147,9 @@ export default function Gallery() {
                       muted
                       loop
                       playsInline
+                      preload="none"
                       autoPlay
+                      onLoadedData={(e) => e.currentTarget.parentElement?.parentElement?.classList.remove('animate-pulse')}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">

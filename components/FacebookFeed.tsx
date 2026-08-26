@@ -120,6 +120,7 @@ export default function FacebookFeed() {
                 <img
                   src={post.image}
                   alt={`ABWOW Paving project - ${post.date}`}
+                  loading="lazy"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
