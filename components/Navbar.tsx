@@ -106,7 +106,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 glass bg-[rgb(var(--color-bg))]/95 flex flex-col px-6 pt-6 pb-8"
+            className="fixed inset-0 z-50 flex flex-col px-6 pt-6 pb-8" style={{ backgroundColor: 'rgb(var(--color-bg))' }}
           >
             <div className="flex items-center justify-between mb-8">
               <Link href="#home" className="text-2xl font-bold tracking-tight" onClick={() => setMobileMenuOpen(false)} style={{ fontFamily: "var(--font-space-grotesk, sans-serif)" }}>

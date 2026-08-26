@@ -105,9 +105,9 @@ export default function Hero() {
           {/* Headline */}
           <motion.div variants={itemVariants} className="mb-6">
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1]" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
-              <span className="block text-white dark:text-white">Paving That Makes</span>
+              <span className="block text-white dark:text-white">Paving That</span>
               <span className="block mt-2">
-                <span className="text-white dark:text-white">You Say </span>
+                <span className="text-white dark:text-white">Makes You Say </span>
                 <span className="gold-gradient-text" style={{ textShadow: 'none' }}>WOW.</span>
               </span>
             </h1>
