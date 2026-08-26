@@ -28,6 +28,14 @@ export default function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
+            {/* American Flag Badge */}
+            <div className="mt-6 inline-flex items-center gap-3 px-4 py-2.5 rounded-lg border border-[#002868]/30 bg-[#002868]/10">
+              <span className="text-2xl">🇺🇸</span>
+              <div>
+                <p className="text-white text-xs font-bold leading-tight">Proudly American</p>
+                <p className="text-gray-400 text-[10px] leading-tight">Owned &amp; Operated</p>
+              </div>
+            </div>
           </div>
 
           {/* Column 2: Services */}

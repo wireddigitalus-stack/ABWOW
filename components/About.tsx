@@ -35,13 +35,24 @@ export default function About() {
                 We are passionate about doing the job right the first time. Whether it&apos;s a residential driveway or a commercial parking lot, we treat every property as if it were our own.
               </p>
             </div>
+
+            {/* American Flag Badge */}
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl border border-[#002868]/20 bg-[#002868]/5 mb-8">
+              <span className="text-3xl">🇺🇸</span>
+              <div>
+                <p className="text-[rgb(var(--color-text))] text-sm font-bold leading-tight">Proudly American Owned</p>
+                <p className="text-[rgb(var(--color-text-secondary))] text-xs leading-tight">Veteran values · Built in Tennessee</p>
+              </div>
+            </div>
             
-            <Link 
-              href="#contact" 
-              className="btn-primary inline-flex items-center justify-center"
-            >
-              Get Your Free Estimate
-            </Link>
+            <div className="block">
+              <Link 
+                href="#contact" 
+                className="inline-flex items-center justify-center px-8 py-4 bg-[#002868] text-white font-semibold rounded-md hover:bg-[#001f4d] transition-colors shadow-lg shadow-[#002868]/20"
+              >
+                Get Your Free Estimate
+              </Link>
+            </div>
           </motion.div>
 
           {/* Right Column: Visual */}

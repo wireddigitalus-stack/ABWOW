@@ -64,9 +64,9 @@ export function StickyMobileCTA() {
           <div className="glass-strong border-t border-[rgb(var(--color-border))] p-3 flex gap-3">
             <a
               href="tel:4235557283"
-              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-[rgb(var(--color-bg))] rounded-xl border border-[rgb(var(--color-border))] font-semibold text-[rgb(var(--color-text))] text-sm"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-[#002868] text-white rounded-xl font-semibold text-sm"
             >
-              <Phone className="w-4 h-4 text-[#DC2626]" />
+              <Phone className="w-4 h-4 text-white" />
               Call Now
             </a>
             <Link

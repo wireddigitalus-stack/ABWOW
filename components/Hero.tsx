@@ -123,7 +123,7 @@ export default function Hero() {
             <Link href="#estimator" className="btn-primary w-full sm:w-auto px-8 py-4 rounded-md font-semibold text-lg flex items-center justify-center">
               Get Free Estimate
             </Link>
-            <a href="tel:4235557283" className="btn-secondary w-full sm:w-auto px-8 py-4 rounded-md font-semibold text-lg flex items-center justify-center gap-2">
+            <a href="tel:4235557283" className="w-full sm:w-auto px-8 py-4 rounded-md font-semibold text-lg flex items-center justify-center gap-2 bg-[#002868] text-white hover:bg-[#001f4d] transition-colors shadow-lg shadow-[#002868]/30">
               <Phone size={20} />
               Call (423) 555-7283
             </a>
