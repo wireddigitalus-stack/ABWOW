@@ -34,18 +34,19 @@ export const metadata: Metadata = {
       "Tri-Cities' trusted asphalt paving contractor. Residential driveways, commercial parking lots, sealcoating & more. Free estimates!",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "ABWOW Paving - Tri-Cities Premier Paving Contractor",
+        alt: "ABWOW Paving - Paving That Makes You Say WOW - Tri-Cities Tennessee",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ABWOW Paving | Premier Asphalt Paving in the Tri-Cities TN",
+    title: "ABWOW Paving | Paving That Makes You Say WOW.",
     description:
-      "Tri-Cities' trusted asphalt paving contractor. Free estimates!",
+      "Tri-Cities' trusted asphalt paving contractor. Residential driveways, commercial parking lots & more. Free estimates!",
+    images: ["/images/og-image.jpg"],
   },
   robots: {
     index: true,

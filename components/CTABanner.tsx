@@ -61,19 +61,19 @@ export function StickyMobileCTA() {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="md:hidden fixed bottom-0 left-0 right-0 z-40 pb-safe"
         >
-          <div className="glass-strong border-t border-[rgb(var(--color-border))] p-4 flex gap-3">
+          <div className="glass-strong border-t border-[rgb(var(--color-border))] p-3 flex gap-3">
             <a
               href="tel:4235557283"
-              className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-[rgb(var(--color-bg))] rounded-xl border border-[rgb(var(--color-border))] font-semibold"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-[rgb(var(--color-bg))] rounded-xl border border-[rgb(var(--color-border))] font-semibold text-[rgb(var(--color-text))] text-sm"
             >
-              <Phone className="w-5 h-5 text-[#DC2626]" />
+              <Phone className="w-4 h-4 text-[#DC2626]" />
               Call Now
             </a>
             <Link
               href="#estimator"
-              className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-[#DC2626] text-black rounded-xl font-semibold"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-[#DC2626] text-white rounded-xl font-semibold text-sm"
             >
-              <FileText className="w-5 h-5" />
+              <FileText className="w-4 h-4" />
               Free Estimate
             </Link>
           </div>
