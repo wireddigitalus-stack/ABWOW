@@ -53,12 +53,127 @@ const STORAGE_KEYS = {
   chatLogs: "abwow-chatlogs",
 };
 
+const SAMPLE_LEADS: Lead[] = [
+  {
+    id: "lead-1",
+    name: "Marcus Vance",
+    email: "marcus.vance@gmail.com",
+    phone: "(423) 483-2911",
+    address: "1420 W Market St, Johnson City, TN",
+    service: "Residential Driveway",
+    message: "Looking to replace our cracked 2,000 sq ft asphalt driveway before winter. Please call for on-site quote.",
+    source: "contact",
+    status: "new",
+    createdAt: new Date(Date.now() - 1000 * 60 * 45).toISOString(), // 45 mins ago
+  },
+  {
+    id: "lead-2",
+    name: "Rachel Holston",
+    email: "rachel@holstongroup.com",
+    phone: "(423) 914-7720",
+    address: "310 State St, Bristol, TN",
+    service: "Commercial Parking Lot",
+    message: "Need 6,500 sq ft commercial lot resurfaced and restriped near downtown Bristol.",
+    source: "estimator",
+    status: "contacted",
+    notes: "Left voicemail with Rachel on 8/26. Waiting on callback.",
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 4).toISOString(),
+  },
+  {
+    id: "lead-3",
+    name: "David Miller",
+    email: "dmiller84@yahoo.com",
+    phone: "(423) 292-3004",
+    address: "Kingsport, TN",
+    service: "Sealcoating & Crack Repair",
+    message: "Estimate request: 1500 sq ft Residential Driveway (Sealcoating). Estimated: $375 - $1,125",
+    source: "estimator",
+    status: "quoted",
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
+  },
+  {
+    id: "lead-4",
+    name: "Pastor David Walker",
+    email: "dwalker@bristolchurch.org",
+    phone: "(423) 764-5510",
+    address: "Bristol, VA",
+    service: "Commercial Parking Lot",
+    message: "Church parking lot paving project completed.",
+    source: "contact",
+    status: "won",
+    notes: "Job completed successfully. Great referral source.",
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 72).toISOString(),
+  }
+];
+
+const SAMPLE_ESTIMATES: Estimate[] = [
+  {
+    id: "est-1",
+    name: "David Miller",
+    email: "dmiller84@yahoo.com",
+    phone: "(423) 292-3004",
+    address: "Kingsport, TN",
+    jobType: "Residential Driveway",
+    area: 1500,
+    areaUnit: "sq ft",
+    serviceType: "Sealcoating",
+    estimatedCost: "$375 – $1,125",
+    status: "reviewed",
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
+  },
+  {
+    id: "est-2",
+    name: "Rachel Holston",
+    email: "rachel@holstongroup.com",
+    phone: "(423) 914-7720",
+    address: "310 State St, Bristol, TN",
+    jobType: "Commercial Parking Lot",
+    area: 6500,
+    areaUnit: "sq ft",
+    serviceType: "Resurfacing / Overlay",
+    estimatedCost: "$13,000 – $22,750",
+    status: "new",
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 4).toISOString(),
+  }
+];
+
+const SAMPLE_CHATS: ChatLog[] = [
+  {
+    id: "chat-1",
+    leadName: "Marcus Vance",
+    leadPhone: "(423) 483-2911",
+    messages: [
+      { role: "bot", content: "Hey there! 👋 I'm the ABWOW Paving assistant. Ask me anything about our paving services, get a quick price estimate, or I can connect you with Alan directly. How can I help?", timestamp: new Date(Date.now() - 1000 * 60 * 50).toISOString() },
+      { role: "user", content: "Do you pave residential driveways in Johnson City?", timestamp: new Date(Date.now() - 1000 * 60 * 49).toISOString() },
+      { role: "bot", content: "We specialize in residential driveways across the Tri-Cities! From brand new asphalt installation to resurfacing and tear-outs, Alan ensures every job is built to last with proper base and compaction. Would you like a free quote?", timestamp: new Date(Date.now() - 1000 * 60 * 48).toISOString() },
+      { role: "user", content: "Yes please, my name is Marcus Vance and number is (423) 483-2911", timestamp: new Date(Date.now() - 1000 * 60 * 46).toISOString() },
+      { role: "bot", content: "Got it! I've noted down your number. Alan will reach out soon. Anything else?", timestamp: new Date(Date.now() - 1000 * 60 * 45).toISOString() }
+    ],
+    createdAt: new Date(Date.now() - 1000 * 60 * 45).toISOString()
+  }
+];
+
 // Generic helpers
 function getItems<T>(key: string): T[] {
   if (typeof window === "undefined") return [];
   try {
     const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : [];
+    if (data) return JSON.parse(data);
+    
+    // Seed initial data if empty
+    if (key === STORAGE_KEYS.leads) {
+      setItems(STORAGE_KEYS.leads, SAMPLE_LEADS);
+      return SAMPLE_LEADS as unknown as T[];
+    }
+    if (key === STORAGE_KEYS.estimates) {
+      setItems(STORAGE_KEYS.estimates, SAMPLE_ESTIMATES);
+      return SAMPLE_ESTIMATES as unknown as T[];
+    }
+    if (key === STORAGE_KEYS.chatLogs) {
+      setItems(STORAGE_KEYS.chatLogs, SAMPLE_CHATS);
+      return SAMPLE_CHATS as unknown as T[];
+    }
+    return [];
   } catch {
     return [];
   }
@@ -185,16 +300,17 @@ export function getDashboardStats() {
   return {
     totalLeads: leads.length,
     newLeads: leads.filter((l) => l.status === "new").length,
-    leadsToday: leads.filter(
+    todayLeads: leads.filter(
       (l) => new Date(l.createdAt).toDateString() === today
     ).length,
     totalEstimates: estimates.length,
     newEstimates: estimates.filter((e) => e.status === "new").length,
     totalChats: chatLogs.length,
-    leadsBySource: {
-      contact: leads.filter((l) => l.source === "contact").length,
-      estimator: leads.filter((l) => l.source === "estimator").length,
-      chatbot: leads.filter((l) => l.source === "chatbot").length,
-    },
+    leadsBySource: [
+      { name: "Contact Form", count: leads.filter((l) => l.source === "contact").length },
+      { name: "Job Estimator", count: leads.filter((l) => l.source === "estimator").length },
+      { name: "AI Chatbot", count: leads.filter((l) => l.source === "chatbot").length },
+    ],
+    recentLeads: leads.slice(0, 5),
   };
 }

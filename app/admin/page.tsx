@@ -92,9 +92,9 @@ export default function AdminPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as TabType)}
-              className={`flex items-center gap-2 px-4 py-3 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-1 justify-center ${
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold transition-all whitespace-nowrap flex-1 justify-center ${
                 isActive 
-                  ? "bg-[#D4A843] text-black" 
+                  ? "bg-[#DC2626] text-white shadow-lg shadow-[#DC2626]/20" 
                   : "text-white/60 hover:text-white hover:bg-white/5"
               }`}
             >
@@ -127,8 +127,8 @@ export default function AdminPage() {
                         <p className="text-white/50 text-sm">{stat.label}</p>
                         <h3 className="text-3xl font-bold text-white mt-2">{stat.value || 0}</h3>
                       </div>
-                      <div className="p-2 bg-white/5 rounded-lg">
-                        <Icon className="w-5 h-5 text-[#D4A843]" />
+                      <div className="p-2.5 bg-[#DC2626]/10 rounded-xl border border-[#DC2626]/20">
+                        <Icon className="w-5 h-5 text-[#DC2626]" />
                       </div>
                     </div>
                   </div>
@@ -196,21 +196,21 @@ export default function AdminPage() {
                     <div className="space-y-2 mb-4 flex-grow">
                       {lead.email && (
                         <a href={`mailto:${lead.email}`} className="flex items-center gap-2 text-sm text-white/70 hover:text-white hover:underline">
-                          <Mail className="w-4 h-4 text-[#D4A843]" /> {lead.email}
+                          <Mail className="w-4 h-4 text-[#002868]" /> {lead.email}
                         </a>
                       )}
                       {lead.phone && (
                         <a href={`tel:${lead.phone}`} className="flex items-center gap-2 text-sm text-white/70 hover:text-white hover:underline">
-                          <Phone className="w-4 h-4 text-[#D4A843]" /> {lead.phone}
+                          <Phone className="w-4 h-4 text-[#DC2626]" /> {lead.phone}
                         </a>
                       )}
                       {lead.service && (
                         <div className="flex items-center gap-2 text-sm text-white/70">
-                          <LayoutDashboard className="w-4 h-4 text-[#D4A843]" /> {lead.service}
+                          <LayoutDashboard className="w-4 h-4 text-white/50" /> {lead.service}
                         </div>
                       )}
                       <div className="flex items-center gap-2 text-sm text-white/70">
-                        <MapPin className="w-4 h-4 text-[#D4A843]" /> Source: {lead.source || 'N/A'}
+                        <MapPin className="w-4 h-4 text-white/50" /> Source: {lead.source || 'N/A'}
                       </div>
                       
                       {lead.notes && (
@@ -225,7 +225,7 @@ export default function AdminPage() {
                         <select 
                           value={lead.status}
                           onChange={(e) => handleUpdateLeadStatus(lead.id, e.target.value)}
-                          className="bg-black/50 border border-white/10 rounded px-2 py-1.5 text-sm text-white focus:outline-none focus:border-[#D4A843] flex-grow"
+                          className="bg-black/50 border border-white/10 rounded-lg px-2.5 py-1.5 text-sm text-white focus:outline-none focus:border-[#DC2626] flex-grow"
                         >
                           <option value="New">New</option>
                           <option value="Contacted">Contacted</option>
@@ -281,19 +281,19 @@ export default function AdminPage() {
                         <div className="text-white font-medium text-right">{estimate.area || 'N/A'}</div>
                         
                         <div className="text-white/50 pt-2 border-t border-white/5">Est. Cost</div>
-                        <div className="text-[#D4A843] font-bold text-right pt-2 border-t border-white/5">{estimate.estimatedCost || 'N/A'}</div>
+                        <div className="text-[#DC2626] font-bold text-right pt-2 border-t border-white/5">{estimate.estimatedCost || 'N/A'}</div>
                       </div>
                     </div>
                     
                     <div className="space-y-2 mb-4">
                       {estimate.email && (
                         <a href={`mailto:${estimate.email}`} className="flex items-center gap-2 text-sm text-white/70 hover:text-white hover:underline">
-                          <Mail className="w-4 h-4 text-[#D4A843]" /> {estimate.email}
+                          <Mail className="w-4 h-4 text-[#002868]" /> {estimate.email}
                         </a>
                       )}
                       {estimate.phone && (
                         <a href={`tel:${estimate.phone}`} className="flex items-center gap-2 text-sm text-white/70 hover:text-white hover:underline">
-                          <Phone className="w-4 h-4 text-[#D4A843]" /> {estimate.phone}
+                          <Phone className="w-4 h-4 text-[#DC2626]" /> {estimate.phone}
                         </a>
                       )}
                     </div>
@@ -302,7 +302,7 @@ export default function AdminPage() {
                       <select 
                         value={estimate.status || 'New'}
                         onChange={(e) => handleUpdateEstimateStatus(estimate.id, e.target.value)}
-                        className="w-full bg-black/50 border border-white/10 rounded px-2 py-1.5 text-sm text-white focus:outline-none focus:border-[#D4A843]"
+                        className="w-full bg-black/50 border border-white/10 rounded-lg px-2.5 py-1.5 text-sm text-white focus:outline-none focus:border-[#DC2626]"
                       >
                         <option value="New">New</option>
                         <option value="Reviewed">Reviewed</option>
@@ -335,7 +335,7 @@ export default function AdminPage() {
                       className="w-full flex items-center justify-between p-5 hover:bg-white/5 transition-colors text-left"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="p-3 bg-[#D4A843]/10 rounded-lg text-[#D4A843]">
+                        <div className="p-3 bg-[#DC2626]/10 rounded-xl text-[#DC2626] border border-[#DC2626]/20">
                           <MessageSquare className="w-5 h-5" />
                         </div>
                         <div>
@@ -352,9 +352,9 @@ export default function AdminPage() {
                       <div className="p-5 border-t border-white/10 bg-black/30 space-y-4 max-h-[500px] overflow-y-auto">
                         {chat.messages.map((msg: any, i: number) => (
                           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                            <div className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm ${
+                            <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${
                               msg.role === 'user' 
-                                ? 'bg-[#D4A843] text-black rounded-tr-sm' 
+                                ? 'bg-[#DC2626] text-white rounded-tr-sm' 
                                 : 'bg-[#222222] text-white border border-white/10 rounded-tl-sm'
                             }`}>
                               {msg.content}

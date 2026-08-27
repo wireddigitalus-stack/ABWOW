@@ -42,14 +42,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-4">
-        <div className="card max-w-md w-full bg-[#111111] p-8 border border-white/10 rounded-xl">
+        <div className="card max-w-md w-full bg-[#111111] p-8 border border-white/10 rounded-2xl shadow-2xl">
           <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 bg-[#D4A843]/10 rounded-full flex items-center justify-center border border-[#D4A843]/20">
-              <Lock className="w-8 h-8 text-[#D4A843]" />
+            <div className="w-16 h-16 bg-[#DC2626]/10 rounded-full flex items-center justify-center border border-[#DC2626]/30">
+              <Lock className="w-8 h-8 text-[#DC2626]" />
             </div>
           </div>
           <h1 className="text-2xl font-bold text-center mb-2 text-white">Admin Access</h1>
-          <p className="text-white/60 text-center mb-8">Enter your PIN to access the dashboard</p>
+          <p className="text-white/60 text-center text-sm mb-8">Enter PIN to access lead management</p>
           
           <form onSubmit={handleLogin} className="space-y-6">
             <div>
@@ -57,13 +57,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 type="password"
                 value={pinInput}
                 onChange={(e) => setPinInput(e.target.value)}
-                placeholder="Enter PIN"
-                className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4A843] transition-colors text-center text-xl tracking-[0.5em]"
+                placeholder="••••"
+                className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#DC2626] transition-colors text-center text-2xl tracking-[0.5em]"
                 autoFocus
               />
               {error && <p className="text-red-400 text-sm mt-2 text-center">{error}</p>}
             </div>
-            <button type="submit" className="w-full btn-primary py-3 rounded-lg font-medium text-black">
+            <button type="submit" className="w-full btn-primary py-3.5 rounded-xl font-semibold text-white bg-[#DC2626] hover:bg-[#B91C1C] transition-colors">
               Unlock Dashboard
             </button>
           </form>
@@ -81,11 +81,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       {/* Admin Header */}
-      <header className="sticky top-0 z-50 bg-[#111111] border-b border-white/10">
+      <header className="sticky top-0 z-50 bg-[#111111]/90 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-xl font-bold text-white flex items-center gap-2">
-              <span className="text-[#D4A843]">ABWOW</span> Admin
+            <h1 className="text-xl font-bold text-white flex items-center gap-2" style={{ fontFamily: "var(--font-space-grotesk, sans-serif)" }}>
+              <span>AB</span><span className="text-[#DC2626]">WOW</span> <span className="text-sm font-normal text-white/50 px-2 py-0.5 rounded bg-white/5 border border-white/10">Admin</span>
             </h1>
           </div>
           <div className="flex items-center gap-4">
