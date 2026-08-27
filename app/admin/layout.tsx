@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Lock, ArrowLeft, LogOut } from "lucide-react";
 import Link from "next/link";
 
-const PIN = "2024";
+const PIN = "1234";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
