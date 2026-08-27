@@ -110,7 +110,7 @@ export default function Chatbot() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-24 right-5 md:bottom-10 md:right-8 z-50 p-4 rounded-full bg-[#DC2626] text-white shadow-xl shadow-black/60 hover:bg-[#b91c1c] hover:shadow-[#DC2626]/40 flex items-center justify-center transition-all animate-[pulse_3s_ease-in-out_infinite]"
+            className="fixed bottom-32 right-6 md:bottom-20 md:right-8 z-50 p-4 rounded-full bg-[#DC2626] text-white shadow-xl shadow-black/60 hover:bg-[#b91c1c] hover:shadow-[#DC2626]/40 flex items-center justify-center transition-all animate-[pulse_3s_ease-in-out_infinite]"
             aria-label="Open chat"
           >
             <MessageCircle size={28} />
@@ -126,7 +126,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-0 right-0 md:bottom-28 md:right-8 z-50 w-full h-[85vh] md:w-[380px] md:h-[500px] flex flex-col overflow-hidden glass-strong border border-white/10 md:rounded-2xl max-md:rounded-t-2xl shadow-2xl shadow-black"
+            className="fixed bottom-0 right-0 md:bottom-32 md:right-8 z-50 w-full h-[85vh] md:w-[380px] md:h-[500px] flex flex-col overflow-hidden glass-strong border border-white/10 md:rounded-2xl max-md:rounded-t-2xl shadow-2xl shadow-black"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/40 backdrop-blur-md">
