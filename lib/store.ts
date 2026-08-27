@@ -1,5 +1,7 @@
-// Data store for leads, estimates, and chat logs
-// Uses localStorage for persistence (upgradeable to Firebase/Supabase)
+// Data store for leads, jobs, estimates, and chat logs
+// Uses localStorage for instant offline cache and syncs with Supabase PostgreSQL cloud database when configured.
+
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
 export interface Lead {
   id: string;
@@ -339,6 +341,26 @@ export function addLead(lead: Omit<Lead, "id" | "createdAt" | "status">): Lead {
   const leads = getLeads();
   leads.unshift(newLead);
   setItems(STORAGE_KEYS.leads, leads);
+
+  // Sync to Supabase if configured
+  if (isSupabaseConfigured && supabase) {
+    supabase.from("leads").insert([{
+      id: newLead.id,
+      name: newLead.name,
+      email: newLead.email,
+      phone: newLead.phone,
+      address: newLead.address,
+      service: newLead.service,
+      message: newLead.message,
+      source: newLead.source,
+      status: newLead.status,
+      notes: newLead.notes,
+      created_at: newLead.createdAt
+    }]).then(({ error }) => {
+      if (error) console.error("Supabase lead sync error:", error);
+    });
+  }
+
   return newLead;
 }
 
@@ -348,12 +370,24 @@ export function updateLead(id: string, updates: Partial<Lead>): void {
   if (index !== -1) {
     leads[index] = { ...leads[index], ...updates };
     setItems(STORAGE_KEYS.leads, leads);
+
+    if (isSupabaseConfigured && supabase) {
+      supabase.from("leads").update(updates).eq("id", id).then(({ error }) => {
+        if (error) console.error("Supabase lead update error:", error);
+      });
+    }
   }
 }
 
 export function deleteLead(id: string): void {
   const leads = getLeads().filter((l) => l.id !== id);
   setItems(STORAGE_KEYS.leads, leads);
+
+  if (isSupabaseConfigured && supabase) {
+    supabase.from("leads").delete().eq("id", id).then(({ error }) => {
+      if (error) console.error("Supabase lead delete error:", error);
+    });
+  }
 }
 
 // Estimates
@@ -373,6 +407,27 @@ export function addEstimate(
   const estimates = getEstimates();
   estimates.unshift(newEstimate);
   setItems(STORAGE_KEYS.estimates, estimates);
+
+  if (isSupabaseConfigured && supabase) {
+    supabase.from("estimates").insert([{
+      id: newEstimate.id,
+      lead_id: newEstimate.leadId,
+      name: newEstimate.name,
+      email: newEstimate.email,
+      phone: newEstimate.phone,
+      address: newEstimate.address,
+      job_type: newEstimate.jobType,
+      area: newEstimate.area,
+      area_unit: newEstimate.areaUnit,
+      service_type: newEstimate.serviceType,
+      estimated_cost: newEstimate.estimatedCost,
+      notes: newEstimate.notes,
+      status: newEstimate.status,
+      created_at: newEstimate.createdAt
+    }]).then(({ error }) => {
+      if (error) console.error("Supabase estimate sync error:", error);
+    });
+  }
 
   // Also add as a lead
   addLead({
@@ -394,6 +449,12 @@ export function updateEstimate(id: string, updates: Partial<Estimate>): void {
   if (index !== -1) {
     estimates[index] = { ...estimates[index], ...updates };
     setItems(STORAGE_KEYS.estimates, estimates);
+
+    if (isSupabaseConfigured && supabase) {
+      supabase.from("estimates").update(updates).eq("id", id).then(({ error }) => {
+        if (error) console.error("Supabase estimate update error:", error);
+      });
+    }
   }
 }
 
@@ -411,6 +472,19 @@ export function addChatLog(chatLog: Omit<ChatLog, "id" | "createdAt">): ChatLog 
   const logs = getChatLogs();
   logs.unshift(newLog);
   setItems(STORAGE_KEYS.chatLogs, logs);
+
+  if (isSupabaseConfigured && supabase) {
+    supabase.from("chat_logs").insert([{
+      id: newLog.id,
+      lead_name: newLog.leadName,
+      lead_email: newLog.leadEmail,
+      lead_phone: newLog.leadPhone,
+      messages: newLog.messages,
+      created_at: newLog.createdAt
+    }]).then(({ error }) => {
+      if (error) console.error("Supabase chat log sync error:", error);
+    });
+  }
 
   // If lead info was captured, add as a lead
   if (chatLog.leadName || chatLog.leadEmail || chatLog.leadPhone) {
@@ -451,6 +525,32 @@ export function addJob(job: Omit<Job, "id" | "createdAt" | "jobNumber"> & { jobN
   };
   jobs.unshift(newJob);
   setItems(STORAGE_KEYS.jobs, jobs);
+
+  if (isSupabaseConfigured && supabase) {
+    supabase.from("jobs").insert([{
+      id: newJob.id,
+      lead_id: newJob.leadId,
+      job_number: newJob.jobNumber,
+      client_name: newJob.clientName,
+      client_phone: newJob.clientPhone,
+      client_email: newJob.clientEmail,
+      job_address: newJob.jobAddress,
+      service_type: newJob.serviceType,
+      contract_price: newJob.contractPrice,
+      status: newJob.status,
+      start_date: newJob.startDate,
+      target_completion_date: newJob.targetCompletionDate,
+      materials: newJob.materials,
+      labor: newJob.labor,
+      equipment: newJob.equipment,
+      checklist: newJob.checklist,
+      notes: newJob.notes,
+      created_at: newJob.createdAt
+    }]).then(({ error }) => {
+      if (error) console.error("Supabase job sync error:", error);
+    });
+  }
+
   return newJob;
 }
 
@@ -460,12 +560,24 @@ export function updateJob(id: string, updates: Partial<Job>): void {
   if (index !== -1) {
     jobs[index] = { ...jobs[index], ...updates };
     setItems(STORAGE_KEYS.jobs, jobs);
+
+    if (isSupabaseConfigured && supabase) {
+      supabase.from("jobs").update(updates).eq("id", id).then(({ error }) => {
+        if (error) console.error("Supabase job update error:", error);
+      });
+    }
   }
 }
 
 export function deleteJob(id: string): void {
   const jobs = getJobs().filter((j) => j.id !== id);
   setItems(STORAGE_KEYS.jobs, jobs);
+
+  if (isSupabaseConfigured && supabase) {
+    supabase.from("jobs").delete().eq("id", id).then(({ error }) => {
+      if (error) console.error("Supabase job delete error:", error);
+    });
+  }
 }
 
 export function createJobFromLead(lead: Lead, contractPrice = 0): Job {
