@@ -78,10 +78,10 @@ export default function Services() {
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
                 className="card card-hover p-6 lg:p-8 flex flex-col h-full relative overflow-hidden group"
               >
                 {/* Silver Top Accent */}

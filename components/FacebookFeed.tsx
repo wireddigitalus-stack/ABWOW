@@ -86,10 +86,10 @@ export default function FacebookFeed() {
           {mockPosts.map((post, index) => (
             <motion.div
               key={post.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.06, ease: "easeOut" }}
               className="card overflow-hidden flex flex-col"
             >
               {/* Post Header */}

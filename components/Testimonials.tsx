@@ -49,10 +49,10 @@ export default function Testimonials() {
         <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0 hide-scrollbar">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
               key={index}
               className="card card-hover min-w-[300px] sm:min-w-[400px] flex-shrink-0 snap-center border-l-4 border-l-[#C0C0C0] p-6 m-2 md:m-0"
             >
